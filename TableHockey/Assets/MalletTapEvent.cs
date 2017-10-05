@@ -16,18 +16,22 @@ public class MalletTapEvent : MonoBehaviour, IInputClickHandler
             return;
         }
 
+        
+        MovementAreaManager.Instance.movementArea.SetActive(true);
 
         if (this.gameObject.name.Equals("Player1Mallet"))
         {
             PlayerManager.Instance.Player = PlayerManager.PlayerType.Player1;
+            //GameObject.Find("Player2Mallet").layer = LayerMask.NameToLayer("None");
+            RotationEvent.Instance.Rotate();
             isStart = true;
             return;
         }
 
-        MovementAreaManager.Instance.movementArea.SetActive(true);
         PlayerManager.Instance.Player = PlayerManager.PlayerType.Player2;
+        //GameObject.Find("Player1Mallet").layer = LayerMask.NameToLayer("None");
+        RotationEvent.Instance.Rotate();
         isStart = true;
-
         
     }
 

@@ -9,6 +9,8 @@ using UnityEngine;
 public class RemoteStartVectManager : Singleton<RemoteStartVectManager>
 {
     public GameObject sphere;
+    private TextMesh textMesh;
+    private StartEvent startEvent;
 
     public class StartVectInfo
     {
@@ -19,7 +21,8 @@ public class RemoteStartVectManager : Singleton<RemoteStartVectManager>
     void Start()
     {
         CustomMessages.Instance.MessageHandlers[CustomMessages.TestMessageID.StartVect] = UpdateStartVect;
-
+        textMesh = GameObject.Find("3DTextPrefab").GetComponent<TextMesh>();
+        startEvent = GameObject.Find("Sphere").GetComponent<StartEvent>();
     }
 
     // Update is called once per frame
@@ -32,19 +35,13 @@ public class RemoteStartVectManager : Singleton<RemoteStartVectManager>
     private void UpdateStartVect(NetworkInMessage msg)
     {
         msg.ReadInt64();
-
-        //addForceするベクトル
-        var vector = CustomMessages.Instance.ReadStartVect(msg);
-
-        //玉にAddForceする
-        var rb = sphere.GetComponent<Rigidbody>();
-        rb.AddRelativeForce(vector * 1f, ForceMode.Impulse);
+        startEvent.CountDown(textMesh,3);
 
 
     }
 
     //メッセージを送る
-    public void SendStartVectInfo(Vector3 vector)
+    public void SendStartVectInfo()
     {
         if (!SharingStage.Instance.IsConnected)
         {
@@ -52,6 +49,8 @@ public class RemoteStartVectManager : Singleton<RemoteStartVectManager>
         }
 
         //メッセージを送る
-        CustomMessages.Instance.SendStartVectInfo(vector);
+        CustomMessages.Instance.SendStartVectInfo();
     }
+
+
 }

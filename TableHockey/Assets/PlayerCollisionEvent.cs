@@ -55,8 +55,8 @@ public class PlayerCollisionEvent : MonoBehaviour
             //random = 1;
             //challengerWallの時
             //if (this.gameObject.name.Equals("ChallengerBackWall"))
-                if (this.gameObject.name.Equals("Player2Mallet"))
-                {
+            if (this.gameObject.name.Equals("Player2Mallet"))
+            {
                 //止める
                 rigidbody.velocity = Vector3.zero;
                 RemoteCollisionVectManager.Instance.IsStopped = true;

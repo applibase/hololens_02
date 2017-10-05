@@ -28,6 +28,7 @@ public class LogManager : Singleton<LogManager>,IInputClickHandler {
             this.stream.Dispose();
 
             this.audioSource.Play();
+
         }
 
     }

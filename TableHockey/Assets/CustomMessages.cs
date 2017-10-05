@@ -144,7 +144,7 @@ namespace HoloToolkit.Sharing.Tests
             }
         }
 
-        public void SendStartVectInfo(Vector3 vector) //スタートの力が加わる方向情報
+        public void SendStartVectInfo() //スタートの力が加わる方向情報
         {
             // If we are connected to a session, broadcast our head info
             if (serverConnection != null && serverConnection.IsConnected())
@@ -152,9 +152,9 @@ namespace HoloToolkit.Sharing.Tests
                 // Create an outgoing network message to contain all the info we want to send
                 NetworkOutMessage msg = CreateMessage((byte)TestMessageID.StartVect);
 
-                msg.Write(vector.x);
-                msg.Write(vector.y);
-                msg.Write(vector.z);
+                //msg.Write(vector.x);
+                //msg.Write(vector.y);
+                //msg.Write(vector.z);
 
                 // Send the message as a broadcast, which will cause the server to forward it to all other users in the session.
                 serverConnection.Broadcast(

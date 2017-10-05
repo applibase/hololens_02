@@ -3,50 +3,43 @@ using System.Collections.Generic;
 using HoloToolkit.Unity.InputModule;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class TapEvent : MonoBehaviour, HoloToolkit.Unity.InputModule.IInputClickHandler
 {
     private new Rigidbody rigidbody;
     private PlayerManager playerManager;
-
+    private TextMesh textMesh;
+    private StartEvent startEvent;
     public void OnInputClicked(InputClickedEventData eventData)
     {
-
         
         if (playerManager.Player == PlayerManager.PlayerType.Player1)
         {
             //rigidbody.constraints = RigidbodyConstraints.None;
             //rigidbody.useGravity = true;
 
-            var vect = new Vector3(0, 0, 1);
-            rigidbody.AddRelativeForce(vect * 1f, ForceMode.Impulse);
-            RemoteStartVectManager.Instance.SendStartVectInfo(vect);
-            MovementAreaManager.Instance.movementArea.SetActive(true);
+            RemoteStartVectManager.Instance.SendStartVectInfo();          
+            startEvent.CountDown(textMesh,3);
+            
 
             return;
         }
 
-
-        //if (player == PlayerManager.PlayerType.Player2)
-        //{
-
-        //    var vect = new Vector3(0, 0, 1);
-        //    rigidbody.AddForce(vect * 1f, ForceMode.Impulse);
-        //    RemoteStartVectManager.Instance.SendStartVectInfo(vect);
-        //    return;
-        //}
-
     }
+
 
     // Use this for initialization
     void Start()
     {
         playerManager = PlayerManager.Instance;
-        rigidbody = GetComponent<Rigidbody>();
-       
+        textMesh = GameObject.Find("3DTextPrefab").GetComponent<TextMesh>();
+        startEvent = GameObject.Find("Sphere").GetComponent<StartEvent>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 	}
+
+
 }
