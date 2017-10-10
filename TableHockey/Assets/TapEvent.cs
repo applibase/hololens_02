@@ -11,9 +11,29 @@ public class TapEvent : MonoBehaviour, HoloToolkit.Unity.InputModule.IInputClick
     private PlayerManager playerManager;
     private TextMesh textMesh;
     private StartEvent startEvent;
+    private bool isStarted;
+
+    public bool IsStarted
+    {
+        get
+        {
+            return isStarted;
+        }
+
+        set
+        {
+            this.isStarted = value;
+        }
+    }
+
     public void OnInputClicked(InputClickedEventData eventData)
     {
-        
+
+        if (isStarted)
+        {
+            return;
+        }
+
         if (playerManager.Player == PlayerManager.PlayerType.Player1)
         {
             //rigidbody.constraints = RigidbodyConstraints.None;
@@ -21,7 +41,7 @@ public class TapEvent : MonoBehaviour, HoloToolkit.Unity.InputModule.IInputClick
 
             RemoteStartVectManager.Instance.SendStartVectInfo();          
             startEvent.CountDown(textMesh,3);
-            
+            isStarted = true;
 
             return;
         }

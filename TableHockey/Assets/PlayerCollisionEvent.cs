@@ -74,7 +74,7 @@ public class PlayerCollisionEvent : MonoBehaviour
             var vect = new Vector3(random, 0, 1f);
             reflectManager.Vector = vect;
 
-            rigidbody.AddRelativeForce(vect * 1f, ForceMode.Impulse);
+            rigidbody.AddRelativeForce(vect * 0.8f, ForceMode.Impulse);
             //メッセージをsendする
             RemoteCollisionVectManager.Instance.SendCollisionVectInfo(vect);
 
@@ -100,7 +100,7 @@ public class PlayerCollisionEvent : MonoBehaviour
 
             var vect = new Vector3(random, 0, -1f);
             reflectManager.Vector = vect;
-            rigidbody.AddRelativeForce(vect * 1f, ForceMode.Impulse);
+            rigidbody.AddRelativeForce(vect * 0.8f, ForceMode.Impulse);
 
             //メッセージをsendする
             RemoteCollisionVectManager.Instance.SendCollisionVectInfo(vect);
