@@ -6,13 +6,12 @@ using UnityEngine;
 public class StartEvent : MonoBehaviour {
 
     private Rigidbody rigidbody;
-    private float speed;
     private TextTapEvent textTapEvent;
     private GameObject sphere;
 
 	// Use this for initialization
 	void Start () {
-        speed = SpeedManager.Instance.StartBallSpeed;
+
         rigidbody = GetComponent<Rigidbody>();
         textTapEvent = GameObject.Find("Text").GetComponent<TextTapEvent>();
         sphere = GameObject.Find("Sphere");
@@ -23,7 +22,7 @@ public class StartEvent : MonoBehaviour {
 		
 	}
 
-    public void CountDown(TextMesh textMesh,int num)
+    public void CountDown(TextMesh textMesh,int num,float speed)
     {
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;
@@ -55,7 +54,7 @@ public class StartEvent : MonoBehaviour {
             {
                 textMesh.text = "" + num;
                 num -= 1;
-                CountDown(textMesh,num);
+                CountDown(textMesh,num,speed);
             }
 
         }));

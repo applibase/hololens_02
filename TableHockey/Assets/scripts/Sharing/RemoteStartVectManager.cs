@@ -35,7 +35,7 @@ public class RemoteStartVectManager : Singleton<RemoteStartVectManager>
     private void UpdateStartVect(NetworkInMessage msg)
     {
         msg.ReadInt64();
-        startEvent.CountDown(textMesh,3);
+        startEvent.CountDown(textMesh,3,1.0f);
 
 
     }

@@ -10,6 +10,7 @@ public class TextTapEvent : MonoBehaviour, HoloToolkit.Unity.InputModule.IInputC
     private new Rigidbody rigidbody;
     private PlayerManager playerManager;
     private TextMesh textMesh;
+    private float speed;
     private StartEvent startEvent;
     private bool isStarted;
 
@@ -38,7 +39,7 @@ public class TextTapEvent : MonoBehaviour, HoloToolkit.Unity.InputModule.IInputC
         {
 
             RemoteStartVectManager.Instance.SendStartVectInfo();          
-            startEvent.CountDown(textMesh,3);
+            startEvent.CountDown(textMesh,3,speed);
             isStarted = true;
 
             return;
@@ -53,7 +54,7 @@ public class TextTapEvent : MonoBehaviour, HoloToolkit.Unity.InputModule.IInputC
         playerManager = PlayerManager.Instance;
         textMesh = GameObject.Find("3DTextPrefab").GetComponent<TextMesh>();
         startEvent = GameObject.Find("Sphere").GetComponent<StartEvent>();
-
+        speed = SpeedManager.Instance.StartBallSpeed;
     }
 	
 	// Update is called once per frame
