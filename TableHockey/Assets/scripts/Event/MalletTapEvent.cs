@@ -15,8 +15,7 @@ public class MalletTapEvent : MonoBehaviour, IInputClickHandler
         {
             return;
         }
-
-        
+       
         MovementAreaManager.Instance.movementArea.SetActive(true);
 
         if (this.gameObject.name.Equals("Player1Mallet"))

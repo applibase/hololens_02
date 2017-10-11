@@ -6,11 +6,13 @@ using UnityEngine;
 public class StartEvent : MonoBehaviour {
 
     private Rigidbody rigidbody;
+    private float speed;
     private TextTapEvent textTapEvent;
     private GameObject sphere;
 
 	// Use this for initialization
 	void Start () {
+        speed = SpeedManager.Instance.StartBallSpeed;
         rigidbody = GetComponent<Rigidbody>();
         textTapEvent = GameObject.Find("Text").GetComponent<TextTapEvent>();
         sphere = GameObject.Find("Sphere");
@@ -40,7 +42,7 @@ public class StartEvent : MonoBehaviour {
                 //ゲームスタート
                 var vect = new Vector3(0, 0, 1);
                 rigidbody.isKinematic = false; 
-                rigidbody.AddRelativeForce(vect * 1f, ForceMode.Impulse);
+                rigidbody.AddRelativeForce(vect * speed, ForceMode.Impulse);
                 MovementAreaManager.Instance.movementArea.SetActive(true);
 
                 StartCoroutine(DelayMethod(1f, () =>

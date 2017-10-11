@@ -7,10 +7,12 @@ public class PlayerCollisionEvent : MonoBehaviour
     private PlayerManager playerManger;
     private new Rigidbody rigidbody;
     private GameObject sphere;
+    private float speed;
     private ReflectManager reflectManager;
     // Use this for initialization
     void Start()
     {
+        speed = SpeedManager.Instance.AddForceSpeed;
         sphere = GameObject.Find("Sphere");
         playerManger = PlayerManager.Instance;
         reflectManager = ReflectManager.Instance;
@@ -40,17 +42,6 @@ public class PlayerCollisionEvent : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-
-    }
-
-
     private void OnCollisionEnter(Collision collision)
     {
         var rigidbody = collision.gameObject.GetComponent<Rigidbody>();
@@ -66,7 +57,7 @@ public class PlayerCollisionEvent : MonoBehaviour
             var position = sphere.transform.localPosition;
             reflectManager.Vector = vect;
 
-            rigidbody.AddRelativeForce(vect * 0.8f, ForceMode.Impulse);
+            rigidbody.AddRelativeForce(vect * speed, ForceMode.Impulse);
             //メッセージをsendする
             RemoteCollisionVectManager.Instance.SendCollisionVectInfo(vect,position);
 
@@ -86,7 +77,7 @@ public class PlayerCollisionEvent : MonoBehaviour
             reflectManager.Vector = vect;
             var position = sphere.transform.localPosition;
 
-            rigidbody.AddRelativeForce(vect * 0.8f, ForceMode.Impulse);
+            rigidbody.AddRelativeForce(vect * speed, ForceMode.Impulse);
 
             //メッセージをsendする
             RemoteCollisionVectManager.Instance.SendCollisionVectInfo(vect,position);

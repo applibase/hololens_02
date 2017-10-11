@@ -33,8 +33,8 @@ public class JudgeEvent : MonoBehaviour {
         {
             return;
         }
-        var rigidbody = sphere.GetComponent<Rigidbody>();
 
+        var rigidbody = sphere.GetComponent<Rigidbody>();
 
         if (player.Player == PlayerManager.PlayerType.Player1 && this.gameObject.name.Equals("PlayerBackWall"))
         {
