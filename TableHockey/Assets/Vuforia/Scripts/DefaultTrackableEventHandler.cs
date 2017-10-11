@@ -81,8 +81,8 @@ namespace Vuforia
                 SharingPoint.transform.Rotate(markerRotation);
                 // Šî€“_‚ğ—LŒø‰»‚·‚é
                 SharingPoint.SetActive(true);
-                // ©‹@‚Ì¶¬
-                
+
+                               
             }
             //Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             //Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
