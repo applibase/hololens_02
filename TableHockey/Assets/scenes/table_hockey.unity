@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 275883849}
   - component: {fileID: 275883852}
   - component: {fileID: 275883848}
+  - component: {fileID: 275883853}
   m_Layer: 0
   m_Name: Player1Mallet
   m_TagString: Untagged
@@ -299,6 +300,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c9f30fac46cef9409743887416fb085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &275883853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 275883846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1eca4dac0e039478f7a1e4b0360a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &278280649
@@ -2236,6 +2248,7 @@ GameObject:
   - component: {fileID: 2079384431}
   - component: {fileID: 2079384434}
   - component: {fileID: 2079384435}
+  - component: {fileID: 2079384430}
   m_Layer: 0
   m_Name: Player2Mallet
   m_TagString: Untagged
@@ -2257,6 +2270,17 @@ Transform:
   m_Father: {fileID: 1682522556}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2079384430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079384428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1eca4dac0e039478f7a1e4b0360a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &2079384431
 MeshRenderer:
   m_ObjectHideFlags: 0

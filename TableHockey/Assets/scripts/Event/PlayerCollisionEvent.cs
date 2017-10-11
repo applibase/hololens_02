@@ -9,6 +9,7 @@ public class PlayerCollisionEvent : MonoBehaviour
     private GameObject sphere;
     private float speed;
     private ReflectManager reflectManager;
+    private CalcReflect calcReflect;
     // Use this for initialization
     void Start()
     {
@@ -17,6 +18,7 @@ public class PlayerCollisionEvent : MonoBehaviour
         playerManger = PlayerManager.Instance;
         reflectManager = ReflectManager.Instance;
         rigidbody = sphere.GetComponent<Rigidbody>();
+        calcReflect = GetComponent<CalcReflect>();
     }
 
 
@@ -34,8 +36,7 @@ public class PlayerCollisionEvent : MonoBehaviour
 
             sphere.transform.localRotation = new Quaternion(0, 0, 0, 1.0f);
             sphere.transform.localPosition = RemoteCollisionVectManager.Instance.Positon;
-
-            rigidbody.AddRelativeForce(vect * 1f, ForceMode.Impulse);
+            rigidbody.AddRelativeForce(vect.normalized * 1f, ForceMode.Impulse);
 
 
             RemoteCollisionVectManager.Instance.IsReceived = false;
@@ -53,11 +54,13 @@ public class PlayerCollisionEvent : MonoBehaviour
             rigidbody.angularVelocity = Vector3.zero;
             sphere.transform.localRotation = new Quaternion(0, 0, 0, 1.0f);
 
-            var vect = new Vector3(random, 0, 1f);
+            //var vect = new Vector3(random, 0, 1f);
             var position = sphere.transform.localPosition;
+            var x = calcReflect.CalcReflectVectX(position, this.gameObject.transform.localPosition);
+            var vect = new Vector3(x, 0, 1f);
             reflectManager.Vector = vect;
 
-            rigidbody.AddRelativeForce(vect * speed, ForceMode.Impulse);
+            rigidbody.AddRelativeForce(vect.normalized * speed, ForceMode.Impulse);
             //メッセージをsendする
             RemoteCollisionVectManager.Instance.SendCollisionVectInfo(vect,position);
 
@@ -73,11 +76,14 @@ public class PlayerCollisionEvent : MonoBehaviour
             rigidbody.angularVelocity = Vector3.zero;
             sphere.transform.localRotation = new Quaternion(0, 0, 0, 1.0f);
 
-            var vect = new Vector3(random, 0, -1f);
-            reflectManager.Vector = vect;
+            //var vect = new Vector3(random, 0, -1f);
+            
             var position = sphere.transform.localPosition;
+            var x = calcReflect.CalcReflectVectX(position, this.gameObject.transform.localPosition);
+            var vect = new Vector3(x, 0, -1f);
+            reflectManager.Vector = vect;
 
-            rigidbody.AddRelativeForce(vect * speed, ForceMode.Impulse);
+            rigidbody.AddRelativeForce(vect.normalized * speed, ForceMode.Impulse);
 
             //メッセージをsendする
             RemoteCollisionVectManager.Instance.SendCollisionVectInfo(vect,position);

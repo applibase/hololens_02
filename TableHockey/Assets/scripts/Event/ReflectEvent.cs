@@ -26,7 +26,7 @@ public class ReflectEvent : MonoBehaviour
         var vect = reflectManager.Vector;
         var reflect = new Vector3(-vect.x, vect.y, vect.z);
 
-        rigidbody.AddRelativeForce(reflect * 1f, ForceMode.Impulse);
+        rigidbody.AddRelativeForce(reflect.normalized * 1f, ForceMode.Impulse);
 
         reflectManager.Vector = reflect;
 
