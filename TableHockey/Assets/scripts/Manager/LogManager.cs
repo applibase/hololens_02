@@ -18,7 +18,7 @@ public class LogManager : Singleton<LogManager>, IInputClickHandler
     private GameObject sphere;
     private bool isStarted;
     private Stream stream;
-    private AudioSource audioSource;
+
 
     public void OnInputClicked(InputClickedEventData eventData)
     {
@@ -28,7 +28,7 @@ public class LogManager : Singleton<LogManager>, IInputClickHandler
             this.stream.Flush();
             this.stream.Dispose();
 
-            this.audioSource.Play();
+            AudioEvent.Instance.Play();
 
         }
 
@@ -38,7 +38,6 @@ public class LogManager : Singleton<LogManager>, IInputClickHandler
     void Start()
     {
 
-        this.audioSource = GameObject.Find("SharingPoint").GetComponent<AudioSource>();
         sphere = GameObject.Find("Sphere");
 #if UNITY_UWP
         Task.Run(async () =>

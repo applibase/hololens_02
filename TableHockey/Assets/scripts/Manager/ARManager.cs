@@ -16,6 +16,8 @@ public class ARManager : MonoBehaviour {
         {
             ImageTarget.SetActive(true);
             ARCamera.SetActive(true);
+
+            AudioEvent.Instance.Play();
         }));
     }
 	
