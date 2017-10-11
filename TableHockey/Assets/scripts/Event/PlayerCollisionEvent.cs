@@ -6,12 +6,12 @@ public class PlayerCollisionEvent : MonoBehaviour
 {
     private PlayerManager playerManger;
     private new Rigidbody rigidbody;
-    public GameObject sphere;
+    private GameObject sphere;
     private ReflectManager reflectManager;
     // Use this for initialization
     void Start()
     {
-
+        sphere = GameObject.Find("Sphere");
         playerManger = PlayerManager.Instance;
         reflectManager = ReflectManager.Instance;
         rigidbody = sphere.GetComponent<Rigidbody>();

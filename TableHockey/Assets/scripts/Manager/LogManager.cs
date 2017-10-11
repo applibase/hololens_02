@@ -12,9 +12,10 @@ using Windows.Storage;
 using System.Threading.Tasks;
 #endif
 
-public class LogManager : Singleton<LogManager>,IInputClickHandler {
+public class LogManager : Singleton<LogManager>, IInputClickHandler
+{
 
-    public GameObject sphere;
+    private GameObject sphere;
     private bool isStarted;
     private Stream stream;
     private AudioSource audioSource;
@@ -34,10 +35,11 @@ public class LogManager : Singleton<LogManager>,IInputClickHandler {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
-         this.audioSource = GameObject.Find("SharingPoint").GetComponent<AudioSource>();
-
+        this.audioSource = GameObject.Find("SharingPoint").GetComponent<AudioSource>();
+        sphere = GameObject.Find("Sphere");
 #if UNITY_UWP
         Task.Run(async () =>
         {
@@ -55,7 +57,8 @@ public class LogManager : Singleton<LogManager>,IInputClickHandler {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
 
         if (!isStarted || this.stream == null)
         {
