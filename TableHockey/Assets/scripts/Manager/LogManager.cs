@@ -43,11 +43,10 @@ public class LogManager : Singleton<LogManager>, IInputClickHandler
         Task.Run(async () =>
         {
             //読み書きの準備を行う
-            var player = PlayerManager.Instance.Player.ToString();
 
             var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync(
                         "Log", CreationCollisionOption.OpenIfExists);
-            var file = await folder.CreateFileAsync("log" + "_" + player + ".txt", CreationCollisionOption.ReplaceExisting);
+            var file = await folder.CreateFileAsync("log.txt", CreationCollisionOption.ReplaceExisting);
             this.stream = await file.OpenStreamForWriteAsync();
 
             isStarted = true;
